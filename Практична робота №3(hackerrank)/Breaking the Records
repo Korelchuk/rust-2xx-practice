@@ -1,0 +1,25 @@
+fn breaking_records(scores: Vec<i32>) -> Vec<i32> {
+    let mut min_record = scores[0];
+    let mut max_record = scores[0];
+    let mut min_breaks = 0;
+    let mut max_breaks = 0;
+
+    for &score in &scores[1..] {
+        if score > max_record {
+            max_record = score;
+            max_breaks += 1;
+        }
+        if score < min_record {
+            min_record = score;
+            min_breaks += 1;
+        }
+    }
+
+    vec![max_breaks, min_breaks]
+}
+
+fn main() {
+    let scores = vec![10, 5, 20, 20, 4, 5, 2, 25, 1];
+    let result = breaking_records(scores);
+    println!("{:?}", result); // Output: [2, 4]
+}
